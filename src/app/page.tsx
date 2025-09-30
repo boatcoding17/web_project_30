@@ -52,12 +52,12 @@ export default function HomePage() {
                   {room.name}
                 </h3>
                 <p className="mb-4 text-gray-400">{room.desc}</p>
-
               </div>
             </div>
           ))}
         </div>
       </section>
+      <p>123456</p>
     </>
   );
 }
