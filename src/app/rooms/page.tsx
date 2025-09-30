@@ -1,6 +1,6 @@
 // src/app/rooms/page.tsx
 import { rooms } from "../../data/rooms";
-
+//Hello world
 export default function RoomsPage() {
   return (
     <section className="px-10 py-32 bg-black text-white min-h-screen">
