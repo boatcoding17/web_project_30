@@ -25,73 +25,83 @@ export default function RootLayout({
       <body
         className={`
           ${geistSans.variable} ${geistMono.variable} antialiased
-          bg-black text-white
-          selection:bg-primary-gold/40 selection:text-black
+          bg-[var(--background)] text-[var(--foreground)]
+          selection:bg-[var(--accent-light)] selection:text-[var(--foreground)]
+          transition-colors
         `}
       >
         {/* Navbar */}
-        <header className="flex justify-between items-center px-12 py-5 bg-white/90 backdrop-blur-md shadow-xl fixed top-0 left-0 right-0 z-50">
-          <h1 className="text-2xl md:text-3xl font-serif font-bold tracking-wide text-black">
-            THE AZURE ZENITH
-          </h1>
-          <nav className="hidden md:flex gap-10 text-sm font-medium uppercase text-black">
-            <a href="/" className="hover:text-primary-gold transition">Home</a>
-            <a href="/rooms" className="hover:text-primary-gold transition">Rooms</a>
-            <a href="/booking" className="hover:text-primary-gold transition">Booking</a>
-            <a href="/confirm" className="hover:text-primary-gold transition">Confirm</a>
-            <a href="#contact" className="hover:text-primary-gold transition">Contact</a>
+        <header className="navbar">
+          <h1 className="navbar-title">THE AZURE ZENITH</h1>
+          <nav className="navbar-links">
+            <a href="/">Home</a>
+            <a href="/rooms">Rooms</a>
+            <a href="/booking">Booking</a>
+            <a href="/confirm">Confirm</a>
+            <a href="#contact">Contact</a>
           </nav>
         </header>
 
-        {/* Content ของแต่ละหน้า */}
+        {/* Content */}
         <main className="pt-28">{children}</main>
 
-        {/* Footer ทุกหน้า */}
-        <footer id="contact" className="bg-primary-black text-gray-400 px-10 py-12 mt-20">
-          <div className="grid md:grid-cols-4 gap-10 max-w-6xl mx-auto">
-            <div>
-              <h4 className="text-xl font-serif font-bold mb-4 text-primary-gold">
-                The Azure Zenith
-              </h4>
-              <p className="text-sm">
-                An elevation of serenity, where luxury meets the horizon.
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-3 text-white">Contact</h4>
-              <p className="text-sm">123 Horizon Lane, The Zenith Isles</p>
-              <p className="text-sm">+62 361 987 654</p>
-              <p className="text-sm hover:text-primary-gold transition">
-                <a href="mailto:info@azurezenith.com">info@azurezenith.com</a>
-              </p>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-3 text-white">Explore</h4>
-              <ul>
-                <li>
-                  <a href="/offers" className="hover:text-primary-gold transition">Exclusive Offers</a>
-                </li>
-                <li>
-                  <a href="/gallery" className="hover:text-primary-gold transition">Gallery</a>
-                </li>
-                <li>
-                  <a href="/weddings" className="hover:text-primary-gold transition">Weddings</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="text-lg font-semibold mb-3 text-white">Connect</h4>
-              <div className="flex gap-4">
-                <a href="#" className="hover:text-primary-gold transition">Facebook</a>
-                <a href="#" className="hover:text-primary-gold transition">Instagram</a>
-                <a href="#" className="hover:text-primary-gold transition">Twitter</a>
-              </div>
-            </div>
-          </div>
-          <div className="text-center mt-10 text-sm text-gray-500 border-t border-gray-800 pt-6">
-            © 2025 The Azure Zenith. All rights reserved.
-          </div>
-        </footer>
+        {/* Footer */}
+        <footer id="contact" className="px-8 py-20 mt-32 border-t">
+  <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-16">
+
+    {/* Logo + Description */}
+<header className="flex justify-between items-center px-12 py-5 backdrop-blur-md shadow-xl fixed top-0 left-0 right-0 z-50">
+  <h1 className="text-2xl md:text-3xl font-serif font-bold tracking-wide">
+    THE AZURE ZENITH
+  </h1>
+  <nav className="hidden md:flex gap-10 text-sm font-medium uppercase">
+    <a href="/" className="transition hover:underline">Home</a>
+    <a href="/rooms" className="transition hover:underline">Rooms</a>
+    <a href="/booking" className="transition hover:underline">Booking</a>
+    <a href="/confirm" className="transition hover:underline">Confirm</a>
+    <a href="#contact" className="transition hover:underline">Contact</a>
+  </nav>
+</header>
+
+    {/* Contact */}
+    <div className="space-y-4">
+      <h4 className="text-lg font-semibold uppercase tracking-wide">Contact</h4>
+      <ul className="space-y-1">
+        <li>123 Horizon Lane, The Zenith Isles</li>
+        <li>+62 361 987 654</li>
+        <li>
+          <a href="mailto:info@azurezenith.com" className="transition underline-offset-2 hover:underline">
+            info@azurezenith.com
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    {/* Explore */}
+    <div className="space-y-4">
+      <h4 className="text-lg font-semibold uppercase tracking-wide">Explore</h4>
+      <ul className="space-y-2">
+        <li><a href="/offers" className="transition hover:underline underline-offset-2">Exclusive Offers</a></li>
+        <li><a href="/gallery" className="transition hover:underline underline-offset-2">Gallery</a></li>
+        <li><a href="/weddings" className="transition hover:underline underline-offset-2">Weddings</a></li>
+      </ul>
+    </div>
+
+    {/* Social */}
+    <div className="space-y-4">
+      <h4 className="text-lg font-semibold uppercase tracking-wide">Connect</h4>
+      <div className="flex gap-5">
+        <a href="#" className="transition hover:underline underline-offset-2">Facebook</a>
+        <a href="#" className="transition hover:underline underline-offset-2">Instagram</a>
+        <a href="#" className="transition hover:underline underline-offset-2">Twitter</a>
+      </div>
+    </div>
+  </div>
+
+  <div className="border-t mt-16 pt-8 text-center text-sm tracking-wide">
+    © {new Date().getFullYear()} The Azure Zenith — All Rights Reserved.
+  </div>
+</footer>
       </body>
     </html>
   );
