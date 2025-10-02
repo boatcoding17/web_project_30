@@ -26,7 +26,7 @@ export default function RoomsPage() {
                 </h3>
                 <p className="mb-4 text-gray-400">{room.desc}</p>
                 <p className="text-lg font-semibold text-yellow-400 mb-2">
-                  {room.price.toLocaleString()} THB / คืน
+                  {room.pricing.monthly.toLocaleString()} THB / คืน
                 </p>
                 <p className={room.available ? "text-green-400" : "text-red-500"}>
                   {room.available ? "Available" : "Not Available"}

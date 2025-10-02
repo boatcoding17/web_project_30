@@ -23,31 +23,62 @@ export default function RoomDetailPage({ params }: RoomPageProps) {
       <div className="bg-white rounded-3xl shadow-2xl p-8">
         {/* รูปห้อง */}
         <div className="rounded-2xl overflow-hidden shadow-lg mb-8">
-          <img src={room.img} alt={room.name} className="w-full h-[400px] object-cover" />
+          <img
+            src={room.img}
+            alt={room.name}
+            className="w-full h-[400px] object-cover"
+          />
         </div>
 
         {/* รายละเอียดห้อง */}
         <h2 className="text-4xl font-serif font-bold mb-4">{room.name}</h2>
         <p className="text-gray-600 mb-6">{room.desc}</p>
 
-        <div className="mb-6">
-          <p className="text-lg">
-            <span className="font-bold">ราคา:</span> ฿{room.price} / คืน
-          </p>
-          <p
-            className={`mt-2 font-semibold ${
-              room.available ? "text-green-600" : "text-red-600"
-            }`}
-          >
-            {room.available ? "Available" : "Not Available"}
-          </p>
+        {/* สถานะ */}
+        <p
+          className={`mt-2 font-semibold ${
+            room.available ? "text-green-600" : "text-red-600"
+          }`}
+        >
+          {room.available ? "Available" : "Not Available"}
+        </p>
+
+        {/* รายละเอียดเพิ่มเติม */}
+        <div className="mb-6 mt-6">
+          <h3 className="text-2xl font-semibold mb-2">รายละเอียด</h3>
+          <p className="text-gray-700">{room.details}</p>
         </div>
 
+        {/* สิ่งอำนวยความสะดวก */}
+        <div className="mb-6">
+          <h3 className="text-2xl font-semibold mb-2">สิ่งอำนวยความสะดวก</h3>
+          <ul className="list-disc list-inside space-y-1 text-gray-700">
+            {room.amenities.map((a: string, i: number) => (
+              <li key={i}>{a}</li>
+            ))}
+          </ul>
+        </div>
+
+        {/* ราคา */}
+        <div className="mb-6">
+          <h3 className="text-2xl font-semibold mb-2">ราคา</h3>
+          <ul className="list-disc list-inside space-y-1 text-gray-700">
+            <li>รายเดือน: {room.pricing.monthly}</li>
+            <li>ค่ามัดจำ: {room.pricing.deposit}</li>
+            <li>ค่าเช่าล่วงหน้า: {room.pricing.advance}</li>
+            <li>ค่าน้ำ: {room.pricing.water}</li>
+            <li>ค่าไฟ: {room.pricing.electricity}</li>
+            <li>อินเทอร์เน็ต: {room.pricing.internet}</li>
+          </ul>
+        </div>
+
+        {/* ปุ่ม */}
         <div className="flex justify-between space-x-4 mt-6">
-          {/* ปุ่มจองห้อง */}
           {room.available ? (
             <Link
-              href={`/booking?roomId=${room.id}&roomName=${encodeURIComponent(room.name)}`}
+              href={`/booking?roomId=${room.id}&roomName=${encodeURIComponent(
+                room.name
+              )}`}
               className="flex-1"
             >
               <button className="w-full py-3 rounded-lg bg-blue-600 hover:bg-blue-700 transition font-semibold">
@@ -55,10 +86,11 @@ export default function RoomDetailPage({ params }: RoomPageProps) {
               </button>
             </Link>
           ) : (
-            <p className="text-gray-400 text-center flex-1">ห้องนี้ไม่สามารถจองได้</p>
+            <p className="text-gray-400 text-center flex-1">
+              ห้องนี้ไม่สามารถจองได้
+            </p>
           )}
 
-          {/* ปุ่มกลับไปหน้ารายการห้อง */}
           <Link href="/rooms" className="flex-1">
             <button className="w-full py-3 rounded-lg bg-gray-700 hover:bg-gray-600 transition font-semibold">
               กลับไปหน้ารายการห้อง
