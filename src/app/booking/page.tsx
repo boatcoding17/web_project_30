@@ -188,6 +188,19 @@ export default function BookingPage() {
           />
         </div>
 
+        {/* Check-out (auto) */}
+        {data.checkOut && (
+          <div>
+            <label className="block font-semibold mb-2">Check-out</label>
+            <input
+              type="datetime-local"
+              value={data.checkOut}
+              readOnly
+              className="w-full p-3 border rounded-md bg-gray-100"
+            />
+          </div>
+        )}
+
         {/* จำนวนคืน */}
         <div>
           <label className="block font-semibold mb-2">จำนวนคืน</label>
@@ -330,6 +343,8 @@ export default function BookingPage() {
             <p><strong>ห้อง:</strong> {selectedRoom.name}</p>
             <p><strong>ราคา/เดือน:</strong> {selectedRoom.pricing.monthly} บาท</p>
             <p><strong>จำนวนคืน:</strong> {data.nights}</p>
+            <p><strong>Check-in:</strong> {data.checkInDate} {data.checkInTime}</p>
+            <p><strong>Check-out:</strong> {data.checkOut ? new Date(data.checkOut).toLocaleString() : "-"}</p>
             <p><strong>ผู้ใหญ่:</strong> {adults}</p>
             <p><strong>เด็ก:</strong> {children}</p>
             {childAges.length > 0 && <p><strong>อายุเด็ก:</strong> {childAges.join(", ")}</p>}
