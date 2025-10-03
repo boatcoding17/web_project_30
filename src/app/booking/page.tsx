@@ -1,14 +1,13 @@
 "use client";
 import { rooms } from "../../data/rooms";
 import { useState, useEffect, useRef } from "react";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter } from "next/navigation";
 
 interface BookingData {
   checkInDate: string;
   checkInTime: string;
   nights: number;
   checkOut: string;
-  arrivalTime: string;
   fullName: string;
   email: string;
   phone: string;
@@ -16,6 +15,7 @@ interface BookingData {
 }
 
 export default function BookingPage() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const roomIdFromUrl = searchParams.get("roomId") || "";
 
@@ -24,19 +24,19 @@ export default function BookingPage() {
     checkInTime: "",
     nights: 1,
     checkOut: "",
-    arrivalTime: "",
     fullName: "",
     email: "",
     phone: "",
     roomId: roomIdFromUrl,
   });
 
-  const [arrivalAlert, setArrivalAlert] = useState(false);
   const [dateAlert, setDateAlert] = useState<string | null>(null);
+  const [adults, setAdults] = useState(1);
+  const [children, setChildren] = useState(0);
+  const [childAges, setChildAges] = useState<number[]>([]);
   const [depositPaid, setDepositPaid] = useState(false);
   const [depositSlip, setDepositSlip] = useState<File | null>(null);
   const [slipPreview, setSlipPreview] = useState<string | null>(null);
-
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   const selectedRoom = rooms.find((r) => r.id.toString() === data.roomId);
@@ -92,32 +92,62 @@ export default function BookingPage() {
     fileInputRef.current?.click();
   };
 
+  const handleChildrenChange = (value: number) => {
+    const max = selectedRoom?.maxChildren || 0;
+    const newChildren = Math.min(value, max);
+    setChildren(newChildren);
+
+    setChildAges((prev) => {
+      const arr = [...prev];
+      arr.length = newChildren;
+      return arr.fill(0, prev.length, newChildren);
+    });
+  };
+
+  const handleChildAgeChange = (index: number, age: number) => {
+    setChildAges((prev) => {
+      const newArr = [...prev];
+      newArr[index] = age;
+      return newArr;
+    });
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!selectedRoom) return alert("กรุณาเลือกห้อง");
     if (!depositPaid) return alert("⚠️ ต้องจ่ายค่ามัดจำก่อนการจอง!");
-    if (arrivalAlert) return alert("⚠️ Arrival Time เกิน 1 ชั่วโมงหลัง Check-in!");
     if (dateAlert) return alert(dateAlert);
 
-    // ✅ ตรวจชื่อ-นามสกุลขั้นต่ำ 2 ตัวอักษร
-    if (!data.fullName.trim() || data.fullName.trim().length < 2)
-      return alert("กรุณาใส่ชื่อ-นามสกุลจริง");
+    const bookingInfo = {
+      roomName: selectedRoom.name,
+      fullName: data.fullName,
+      checkInDate: data.checkInDate,
+      checkInTime: data.checkInTime,
+      checkOut: data.checkOut,
+      nights: data.nights,
+      adults,
+      children,
+    };
 
-    if (!data.email.trim()) return alert("กรุณาใส่อีเมล");
-    if (!data.phone.trim()) return alert("กรุณาใส่เบอร์โทรศัพท์");
-
-    alert(
-      `Booking Complete!\n\nห้อง: ${selectedRoom.name}\nชื่อ: ${data.fullName}\nอีเมล: ${data.email}\nเข้าพัก: ${data.checkInDate} ${data.checkInTime}\nเช็คเอาท์: ${data.checkOut}\nจำนวนคืน: ${data.nights}\nราคารวม: ${totalPrice.toFixed(0)} บาท\nค่ามัดจำ: ${depositAmount} บาท`
-    );
+    localStorage.setItem("booking", JSON.stringify(bookingInfo));
+    router.push("/confirm");
   };
 
-  const today = new Date().toISOString().split("T")[0];
+  // วันที่วันนี้
+  const todayObj = new Date();
+  const minDate = todayObj.toISOString().split("T")[0];
+
+  // วันที่ 3 เดือนถัดไป
+  const maxDateObj = new Date(todayObj);
+  maxDateObj.setMonth(maxDateObj.getMonth() + 3);
+  const maxDate = maxDateObj.toISOString().split("T")[0];
 
   return (
     <section className="px-6 py-12 max-w-2xl mx-auto">
       <h2 className="text-3xl font-bold mb-6 text-center">24-Hour Stay Booking</h2>
       <form onSubmit={handleSubmit} className="space-y-6 bg-white p-6 rounded-xl shadow">
+
         {/* เลือกห้อง */}
         <div>
           <label className="block font-semibold mb-2">เลือกห้อง</label>
@@ -144,7 +174,8 @@ export default function BookingPage() {
             value={data.checkInDate}
             onChange={(e) => setData(prev => ({ ...prev, checkInDate: e.target.value }))}
             required
-            min={today}
+            min={minDate}
+            max={maxDate}
             className="w-full p-3 border rounded-md"
           />
           <label className="block font-semibold mt-3 mb-2">Check-in Time</label>
@@ -159,33 +190,77 @@ export default function BookingPage() {
 
         {/* จำนวนคืน */}
         <div>
-  <label className="block font-semibold mb-2">จำนวนคืน</label>
-  <input
-    type="number"
-    value={data.nights}
-    onChange={(e) =>
-      setData(prev => ({
-        ...prev,
-        nights: Math.max(1, Math.min(90, parseInt(e.target.value) || 1))
-      }))
-    }
-    min={1}
-    max={90}
-    className="w-full p-3 border rounded-md"
-  />
-  {dateAlert && <p className="text-red-600 mt-1">{dateAlert}</p>}
-</div>
-
-        {/* Check-out */}
-        <div>
-          <label className="block font-semibold mb-2">Check-out (Auto)</label>
+          <label className="block font-semibold mb-2">จำนวนคืน</label>
           <input
-            type="datetime-local"
-            value={data.checkOut}
-            disabled
-            className="w-full p-3 border rounded-md bg-gray-100 cursor-not-allowed"
+            type="number"
+            value={data.nights || 1}
+            onChange={e => {
+              const val = parseInt(e.target.value);
+              setData(prev => ({ ...prev, nights: isNaN(val) ? 1 : val }));
+            }}
+            min={1}
+            max={90}
+            className="w-full p-3 border rounded-md"
           />
+          {dateAlert && <p className="text-red-600 mt-1">{dateAlert}</p>}
         </div>
+
+        {/* จำนวนผู้เข้าพัก */}
+        {selectedRoom && (
+          <div>
+            <label className="block font-semibold mb-2">ผู้ใหญ่ (Adults)</label>
+            <input
+              type="number"
+              value={adults || 1}
+              onChange={e => {
+                const val = parseInt(e.target.value);
+                setAdults(isNaN(val) ? 1 : Math.min(Math.max(val, 1), selectedRoom.maxAdults));
+              }}
+              min={1}
+              max={selectedRoom.maxAdults}
+              className="w-full p-3 border rounded-md"
+            />
+            <p className="text-sm text-gray-500">สูงสุด {selectedRoom.maxAdults} คน</p>
+
+            <label className="block font-semibold mt-3 mb-2">เด็ก (Children)</label>
+            <input
+              type="number"
+              value={children || 0}
+              onChange={e => handleChildrenChange(parseInt(e.target.value) || 0)}
+              min={0}
+              max={selectedRoom.maxChildren}
+              className="w-full p-3 border rounded-md"
+            />
+            <p className="text-sm text-gray-500">สูงสุด {selectedRoom.maxChildren} คน</p>
+
+            {childAges.map((age, i) => (
+              <div key={i}>
+                <label className="block font-semibold mt-2 mb-1">อายุเด็กคนที่ {i + 1}</label>
+                <select
+                  value={age}
+                  onChange={e => handleChildAgeChange(i, Number(e.target.value))}
+                  className="w-full p-3 border rounded-md"
+                >
+                  <option value={0.08}>1 เดือน</option>
+                  <option value={0.17}>2 เดือน</option>
+                  <option value={0.25}>3 เดือน</option>
+                  <option value={0.33}>4 เดือน</option>
+                  <option value={0.42}>5 เดือน</option>
+                  <option value={0.5}>6 เดือน</option>
+                  <option value={0.58}>7 เดือน</option>
+                  <option value={0.67}>8 เดือน</option>
+                  <option value={0.75}>9 เดือน</option>
+                  <option value={0.83}>10 เดือน</option>
+                  <option value={0.92}>11 เดือน</option>
+                  <option value={1}>1 ปี</option>
+                  {Array.from({ length: 16 }, (_, n) => n + 2).map(n => (
+                    <option key={n} value={n}>{n} ปี</option>
+                  ))}
+                </select>
+              </div>
+            ))}
+          </div>
+        )}
 
         {/* ข้อมูลผู้จอง */}
         <div>
@@ -243,7 +318,7 @@ export default function BookingPage() {
               <img
                 src={slipPreview}
                 alt="Preview Slip"
-                className="block mx-auto mt-2 w-1/5 object-contain"
+                className="block mx-auto mt-2 w-6/5 object-contain"
               />
             )}
           </div>
@@ -255,6 +330,9 @@ export default function BookingPage() {
             <p><strong>ห้อง:</strong> {selectedRoom.name}</p>
             <p><strong>ราคา/เดือน:</strong> {selectedRoom.pricing.monthly} บาท</p>
             <p><strong>จำนวนคืน:</strong> {data.nights}</p>
+            <p><strong>ผู้ใหญ่:</strong> {adults}</p>
+            <p><strong>เด็ก:</strong> {children}</p>
+            {childAges.length > 0 && <p><strong>อายุเด็ก:</strong> {childAges.join(", ")}</p>}
             <p><strong>รวมทั้งหมด:</strong> {totalPrice.toFixed(0)} บาท</p>
           </div>
         )}

@@ -6,6 +6,8 @@ export const rooms = [
     img: "/images/room1.jpg",
     desc: "ห้องซิงเกิล เตียงเดี่ยว เหมาะสำหรับเข้าพัก 1 คน",
     available: true,
+    maxAdults: 1,
+    maxChildren: 1,
     details: [
       "ห้องซิงเกิล เตียงเดี่ยว 1 เตียง (Twin/Single bed)",
       "เหมาะสำหรับเข้าพัก 1 คน",
@@ -28,6 +30,8 @@ export const rooms = [
     img: "/images/room2.jpg",
     desc: "ห้องทวิน มีเตียงเดี่ยว 2 เตียง เหมาะสำหรับเพื่อนหรือครอบครัว",
     available: true,
+    maxAdults: 2,
+    maxChildren: 2,
     details: [
       "มีเตียงเดี่ยว 2 เตียง",
       "เหมาะสำหรับเพื่อนหรือครอบครัวที่ต้องการแยกเตียง",
@@ -49,6 +53,8 @@ export const rooms = [
     img: "/images/room3.jpg",
     desc: "ห้องดับเบิล เตียงใหญ่ เหมาะสำหรับคู่รักหรือเข้าพัก 2 คน",
     available: true,
+    maxAdults: 2,
+    maxChildren: 1,
     details: [
       "เตียงใหญ่ 1 เตียง (Queen/King size)",
       "เหมาะสำหรับคู่รักหรือผู้เข้าพัก 2 คน",
@@ -70,6 +76,8 @@ export const rooms = [
     img: "/images/room4.jpg",
     desc: "ห้องทริปเปิล เหมาะสำหรับเข้าพัก 3 คน",
     available: true,
+    maxAdults: 3,
+    maxChildren: 2,
     details: [
       "มี 3 เตียงเดี่ยว หรือ 1 เตียงใหญ่ + 1 เตียงเดี่ยว",
       "พักได้ 3 คน",
@@ -91,6 +99,8 @@ export const rooms = [
     img: "/images/room5.jpg",
     desc: "ห้องควอด เหมาะสำหรับเข้าพัก 4 คน",
     available: false,
+    maxAdults: 4,
+    maxChildren: 2,
     details: [
       "มีเตียง 2 เตียงใหญ่ หรือ 4 เตียงเล็ก",
       "เหมาะสำหรับเข้าพัก 4 คน",
@@ -112,6 +122,8 @@ export const rooms = [
     img: "/images/room6.jpg",
     desc: "ห้องสตูดิโอ รวม ห้องนอน + ห้องนั่งเล่น + ครัวเล็ก",
     available: true,
+    maxAdults: 2,
+    maxChildren: 2,
     details: [
       "ห้องที่รวม ห้องนอน + ห้องนั่งเล่น + ครัวเล็ก ๆ ในที่เดียว",
       "เตียงมักจะเป็น Sofa bed หรือเตียงพับได้",
@@ -133,6 +145,8 @@ export const rooms = [
     img: "/images/room7.jpg",
     desc: "ห้องดีลักซ์ กว้างและหรูหรากว่ามาตรฐาน",
     available: true,
+    maxAdults: 3,
+    maxChildren: 3,
     details: [
       "ใหญ่กว่าห้องมาตรฐาน",
       "การตกแต่งหรูหรา สวยงามกว่า",
@@ -155,6 +169,8 @@ export const rooms = [
     img: "/images/room8.jpg",
     desc: "ห้องสวีท หรูหราพร้อมห้องนั่งเล่นแยกต่างหาก",
     available: true,
+    maxAdults: 4,
+    maxChildren: 4,
     details: [
       "มีห้องนั่งเล่นแยกต่างหากจากห้องนอน",
       "พื้นที่กว้างขวางและหรูหรา",
@@ -176,6 +192,8 @@ export const rooms = [
     img: "/images/room9.jpg",
     desc: "ห้องเพรซิเดนเชียลสวีท ใหญ่และหรูที่สุด",
     available: true,
+    maxAdults: 6,
+    maxChildren: 4,
     details: [
       "ห้องที่ใหญ่และหรูหราที่สุดในโรงแรม",
       "มีหลายห้องนอน ห้องรับแขก ห้องประชุม",
@@ -198,6 +216,8 @@ export const rooms = [
     img: "/images/room10.jpg",
     desc: "ห้องดอร์มหอพักรวม ราคาประหยัด",
     available: true,
+    maxAdults: 10,
+    maxChildren: 5,
     details: [
       "มีเตียงหลายเตียงในห้องเดียว (Bunk bed)",
       "ใช้ร่วมกับแขกคนอื่น ๆ",
