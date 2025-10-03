@@ -3,7 +3,7 @@ export const rooms = [
   {
     id: 1,
     name: "Single Room",
-    img: "/images/room1.jpg", //single
+    img: "/images/room1.jpg",
     desc: "ห้องซิงเกิล เตียงเดี่ยว เหมาะสำหรับเข้าพัก 1 คน",
     available: true,
     details: [
@@ -13,18 +13,19 @@ export const rooms = [
     ],
     amenities: ["เตียงเดี่ยว 1 เตียง", "โต๊ะทำงาน", "ตู้เสื้อผ้า", "ทีวี", "ห้องน้ำส่วนตัว", "ฟรี Wi-Fi"],
     pricing: {
-      monthly: "3,000 - 3,500 บาท/เดือน",
-      deposit: "1 เดือน",
-      advance: "1 เดือน",
-      water: "100 บาท/คน/เดือน",
-      electricity: "6.8 บาท/ยูนิต",
-      internet: "ฟรี"
+      daily: 500,
+      monthly: 3000,
+      deposit: 3000,
+      advance: 3000,
+      water: 100,
+      electricity: 6.8,
+      internet: 0
     }
   },
   {
     id: 2,
     name: "Twin Room",
-    img: "/images/room2.jpg", //twin
+    img: "/images/room2.jpg",
     desc: "ห้องทวิน มีเตียงเดี่ยว 2 เตียง เหมาะสำหรับเพื่อนหรือครอบครัว",
     available: true,
     details: [
@@ -33,18 +34,19 @@ export const rooms = [
     ],
     amenities: ["เตียงเดี่ยว 2 เตียง", "ตู้เย็น", "ทีวี", "ห้องน้ำในตัว", "โต๊ะอาหารเล็ก", "Wi-Fi"],
     pricing: {
-      monthly: "3,800 - 4,200 บาท/เดือน",
-      deposit: "1 เดือน",
-      advance: "1 เดือน",
-      water: "100 บาท/คน/เดือน",
-      electricity: "6.8 บาท/ยูนิต",
-      internet: "ฟรี"
+      daily: 650,
+      monthly: 3800,
+      deposit: 3800,
+      advance: 3800,
+      water: 100,
+      electricity: 6.8,
+      internet: 0
     }
   },
   {
     id: 3,
     name: "Double Room",
-    img: "/images/room3.jpg", //double
+    img: "/images/room3.jpg",
     desc: "ห้องดับเบิล เตียงใหญ่ เหมาะสำหรับคู่รักหรือเข้าพัก 2 คน",
     available: true,
     details: [
@@ -53,18 +55,19 @@ export const rooms = [
     ],
     amenities: ["เตียงใหญ่", "โซฟาเล็ก", "ตู้เสื้อผ้า", "ทีวีจอแบน", "ห้องน้ำส่วนตัว", "Wi-Fi"],
     pricing: {
-      monthly: "4,000 - 4,500 บาท/เดือน",
-      deposit: "1 เดือน",
-      advance: "1 เดือน",
-      water: "100 บาท/คน/เดือน",
-      electricity: "6.8 บาท/ยูนิต",
-      internet: "ฟรี"
+      daily: 700,
+      monthly: 4000,
+      deposit: 4000,
+      advance: 4000,
+      water: 100,
+      electricity: 6.8,
+      internet: 0
     }
   },
   {
     id: 4,
     name: "Triple Room",
-    img: "/images/room4.jpg", //triple
+    img: "/images/room4.jpg",
     desc: "ห้องทริปเปิล เหมาะสำหรับเข้าพัก 3 คน",
     available: true,
     details: [
@@ -73,18 +76,19 @@ export const rooms = [
     ],
     amenities: ["3 เตียงเดี่ยว / 1 เตียงใหญ่ + 1 เดี่ยว", "โต๊ะอาหาร", "ตู้เย็น", "ห้องน้ำส่วนตัว", "Wi-Fi"],
     pricing: {
-      monthly: "4,500 - 5,000 บาท/เดือน",
-      deposit: "1 เดือน",
-      advance: "1 เดือน",
-      water: "100 บาท/คน/เดือน",
-      electricity: "6.8 บาท/ยูนิต",
-      internet: "ฟรี"
+      daily: 850,
+      monthly: 4500,
+      deposit: 4500,
+      advance: 4500,
+      water: 100,
+      electricity: 6.8,
+      internet: 0
     }
   },
   {
     id: 5,
     name: "Quad Room",
-    img: "/images/room5.jpg", //quad
+    img: "/images/room5.jpg",
     desc: "ห้องควอด เหมาะสำหรับเข้าพัก 4 คน",
     available: false,
     details: [
@@ -93,18 +97,19 @@ export const rooms = [
     ],
     amenities: ["4 เตียงเดี่ยว หรือ 2 เตียงใหญ่", "โต๊ะรับแขก", "ทีวี", "ตู้เย็น", "ห้องน้ำในตัว", "Wi-Fi"],
     pricing: {
-      monthly: "5,000 - 5,500 บาท/เดือน",
-      deposit: "1 เดือน",
-      advance: "1 เดือน",
-      water: "100 บาท/คน/เดือน",
-      electricity: "6.8 บาท/ยูนิต",
-      internet: "ฟรี"
+      daily: 1000,
+      monthly: 5000,
+      deposit: 5000,
+      advance: 5000,
+      water: 100,
+      electricity: 6.8,
+      internet: 0
     }
   },
   {
     id: 6,
     name: "Studio Room",
-    img: "/images/room6.jpg", //studio
+    img: "/images/room6.jpg",
     desc: "ห้องสตูดิโอ รวม ห้องนอน + ห้องนั่งเล่น + ครัวเล็ก",
     available: true,
     details: [
@@ -113,18 +118,19 @@ export const rooms = [
     ],
     amenities: ["Sofa bed / เตียงพับได้", "เคาน์เตอร์ครัว", "ไมโครเวฟ", "โต๊ะทานข้าว", "ห้องน้ำในตัว", "Wi-Fi"],
     pricing: {
-      monthly: "6,000 - 6,500 บาท/เดือน",
-      deposit: "1 เดือน",
-      advance: "1 เดือน",
-      water: "100 บาท/คน/เดือน",
-      electricity: "6.8 บาท/ยูนิต",
-      internet: "ฟรี"
+      daily: 1200,
+      monthly: 6000,
+      deposit: 6000,
+      advance: 6000,
+      water: 100,
+      electricity: 6.8,
+      internet: 0
     }
   },
   {
     id: 7,
     name: "Deluxe Room",
-    img: "/images/room7.jpg", //deluxe
+    img: "/images/room7.jpg",
     desc: "ห้องดีลักซ์ กว้างและหรูหรากว่ามาตรฐาน",
     available: true,
     details: [
@@ -134,18 +140,19 @@ export const rooms = [
     ],
     amenities: ["เตียงใหญ่", "เฟอร์นิเจอร์พิเศษ", "วิวสวย", "ห้องน้ำหรูพร้อมอ่างอาบน้ำ", "ทีวีจอใหญ่", "Wi-Fi"],
     pricing: {
-      monthly: "7,000 - 8,000 บาท/เดือน",
-      deposit: "2 เดือน",
-      advance: "1 เดือน",
-      water: "100 บาท/คน/เดือน",
-      electricity: "6.8 บาท/ยูนิต",
-      internet: "ฟรี"
+      daily: 1500,
+      monthly: 7000,
+      deposit: 14000,
+      advance: 7000,
+      water: 100,
+      electricity: 6.8,
+      internet: 0
     }
   },
   {
     id: 8,
     name: "Suite Room",
-    img: "/images/room8.jpg", //suite
+    img: "/images/room8.jpg",
     desc: "ห้องสวีท หรูหราพร้อมห้องนั่งเล่นแยกต่างหาก",
     available: true,
     details: [
@@ -154,18 +161,19 @@ export const rooms = [
     ],
     amenities: ["ห้องนอน + ห้องนั่งเล่น", "โซฟาเซ็ตใหญ่", "ครัวเล็ก", "โต๊ะอาหาร", "ห้องน้ำหรู", "Wi-Fi"],
     pricing: {
-      monthly: "12,000 - 15,000 บาท/เดือน",
-      deposit: "2 เดือน",
-      advance: "1 เดือน",
-      water: "100 บาท/คน/เดือน",
-      electricity: "6.8 บาท/ยูนิต",
-      internet: "ฟรี"
+      daily: 2500,
+      monthly: 12000,
+      deposit: 24000,
+      advance: 12000,
+      water: 100,
+      electricity: 6.8,
+      internet: 0
     }
   },
   {
     id: 9,
     name: "Presidential Suite",
-    img: "/images/room9.jpg", //presidential
+    img: "/images/room9.jpg",
     desc: "ห้องเพรซิเดนเชียลสวีท ใหญ่และหรูที่สุด",
     available: true,
     details: [
@@ -175,18 +183,19 @@ export const rooms = [
     ],
     amenities: ["ห้องนอนหลายห้อง", "ห้องประชุม", "อ่างจากุซซี่", "ครัวส่วนตัว", "ห้องรับแขกใหญ่", "Wi-Fi"],
     pricing: {
-      monthly: "25,000 - 40,000 บาท/เดือน",
-      deposit: "3 เดือน",
-      advance: "1 เดือน",
-      water: "ตามจริง",
-      electricity: "ตามจริง",
-      internet: "ฟรี"
+      daily: 5000,
+      monthly: 25000,
+      deposit: 75000,
+      advance: 25000,
+      water: 0,
+      electricity: 0,
+      internet: 0
     }
   },
   {
     id: 10,
     name: "Dormitory",
-    img: "/images/room10.jpg", //dormitory
+    img: "/images/room10.jpg",
     desc: "ห้องดอร์มหอพักรวม ราคาประหยัด",
     available: true,
     details: [
@@ -196,12 +205,13 @@ export const rooms = [
     ],
     amenities: ["เตียง 4-10 เตียง (Bunk bed)", "ล็อกเกอร์เก็บของ", "ห้องน้ำรวม", "Wi-Fi ฟรี", "โซนนั่งเล่นรวม"],
     pricing: {
-      monthly: "2,000 - 2,500 บาท/เดือน",
-      deposit: "0.5 เดือน",
-      advance: "1 เดือน",
-      water: "100 บาท/คน/เดือน",
-      electricity: "6.8 บาท/ยูนิต",
-      internet: "ฟรี"
+      daily: 300,
+      monthly: 2000,
+      deposit: 1000,
+      advance: 2000,
+      water: 100,
+      electricity: 6.8,
+      internet: 0
     }
   }
 ];
