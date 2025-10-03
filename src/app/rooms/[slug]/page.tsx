@@ -5,12 +5,13 @@ import { rooms } from "../../../data/rooms";
 import Link from "next/link";
 
 interface RoomPageProps {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export default function RoomDetailPage({ params }: RoomPageProps) {
   const unwrappedParams = use(params);
-  const room = rooms.find((r) => r.id.toString() === unwrappedParams.id);
+  const room = rooms.find((r) => r.slug === unwrappedParams.slug);
+
 
   const roomImages = room?.imgs && room.imgs.length > 0 ? room.imgs : room ? [room.img] : [];
 
