@@ -3,7 +3,9 @@ export const rooms = [
   {
     id: 1,
     name: "Single Room",
+    slug: "single-room",
     img: "/images/room1.jpg",
+    imgs: ["/images/otherroom/otherroom1.jpg", "/images/bathroom/bathroom1.jpg", "/images/balconyroom/balconyroom1.jpg"],
     desc: "ห้องซิงเกิล เตียงเดี่ยว เหมาะสำหรับเข้าพัก 1 คน",
     available: true,
     maxAdults: 1,
@@ -27,7 +29,9 @@ export const rooms = [
   {
     id: 2,
     name: "Twin Room",
+    slug: "twin-room",
     img: "/images/room2.jpg",
+    imgs: ["/images/otherroom/otherroom2.jpg", "/images/bathroom/bathroom2.jpg", "/images/balconyroom/balconyroom2.jpg"],
     desc: "ห้องทวิน มีเตียงเดี่ยว 2 เตียง เหมาะสำหรับเพื่อนหรือครอบครัว",
     available: true,
     maxAdults: 2,
@@ -50,7 +54,9 @@ export const rooms = [
   {
     id: 3,
     name: "Double Room",
+    slug: "double-room",
     img: "/images/room3.jpg",
+    imgs: ["/images/otherroom/otherroom3.jpg", "/images/bathroom/bathroom3.jpg", "/images/balconyroom/balconyroom3.jpg"],
     desc: "ห้องดับเบิล เตียงใหญ่ เหมาะสำหรับคู่รักหรือเข้าพัก 2 คน",
     available: true,
     maxAdults: 2,
@@ -73,7 +79,9 @@ export const rooms = [
   {
     id: 4,
     name: "Triple Room",
+    slug: "triple-room",
     img: "/images/room4.jpg",
+    imgs: ["/images/otherroom/otherroom4.jpg", "/images/bathroom/bathroom4.jpg", "/images/balconyroom/balconyroom4.jpg"],
     desc: "ห้องทริปเปิล เหมาะสำหรับเข้าพัก 3 คน",
     available: true,
     maxAdults: 3,
@@ -96,7 +104,9 @@ export const rooms = [
   {
     id: 5,
     name: "Quad Room",
+    slug: "quad-room",
     img: "/images/room5.jpg",
+    imgs: ["/images/otherroom/otherroom5.jpg", "/images/bathroom/bathroom5.jpg", "/images/balconyroom/balconyroom5.jpg"],
     desc: "ห้องควอด เหมาะสำหรับเข้าพัก 4 คน",
     available: false,
     maxAdults: 4,
@@ -119,7 +129,9 @@ export const rooms = [
   {
     id: 6,
     name: "Studio Room",
+    slug: "studio-room",
     img: "/images/room6.jpg",
+    imgs: ["/images/otherroom/otherroom6.jpg", "/images/bathroom/bathroom6.jpg", "/images/balconyroom/balconyroom6.jpg"],
     desc: "ห้องสตูดิโอ รวม ห้องนอน + ห้องนั่งเล่น + ครัวเล็ก",
     available: true,
     maxAdults: 2,
@@ -142,7 +154,9 @@ export const rooms = [
   {
     id: 7,
     name: "Deluxe Room",
+    slug: "deluxe-room",
     img: "/images/room7.jpg",
+    imgs: ["/images/otherroom/otherroom7.jpg", "/images/bathroom/bathroom7.jpg", "/images/balconyroom/balconyroom7.jpg"],
     desc: "ห้องดีลักซ์ กว้างและหรูหรากว่ามาตรฐาน",
     available: true,
     maxAdults: 3,
@@ -166,7 +180,9 @@ export const rooms = [
   {
     id: 8,
     name: "Suite Room",
+    slug: "suite-room",
     img: "/images/room8.jpg",
+    imgs: ["/images/otherroom/otherroom8.jpg", "/images/bathroom/bathroom8.jpg", "/images/balconyroom/balconyroom8.jpg"],
     desc: "ห้องสวีท หรูหราพร้อมห้องนั่งเล่นแยกต่างหาก",
     available: true,
     maxAdults: 4,
@@ -189,7 +205,9 @@ export const rooms = [
   {
     id: 9,
     name: "Presidential Suite",
+    slug: "presidential-suite",
     img: "/images/room9.jpg",
+    imgs: ["/images/otherroom/otherroom9.jpg", "/images/bathroom/bathroom9.jpg", "/images/balconyroom/balconyroom9.jpg"],
     desc: "ห้องเพรซิเดนเชียลสวีท ใหญ่และหรูที่สุด",
     available: true,
     maxAdults: 6,
@@ -213,7 +231,9 @@ export const rooms = [
   {
     id: 10,
     name: "Dormitory",
+    slug: "dormitory",
     img: "/images/room10.jpg",
+    imgs: ["/images/otherroom/otherroom10.jpg", "/images/bathroom/bathroom10.jpg", "/images/balconyroom/balconyroom10.jpg"],
     desc: "ห้องดอร์มหอพักรวม ราคาประหยัด",
     available: true,
     maxAdults: 10,
