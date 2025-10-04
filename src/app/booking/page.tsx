@@ -1,4 +1,7 @@
 "use client";
+"use client";
+
+export const dynamic = "force-dynamic";
 
 import { rooms } from "../../data/rooms";
 import { useState, useEffect, useRef } from "react";
