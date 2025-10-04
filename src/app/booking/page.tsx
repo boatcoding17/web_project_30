@@ -1,7 +1,9 @@
 "use client";
+
 import { rooms } from "../../data/rooms";
 import { useState, useEffect, useRef } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
+import Image from "next/image";
 
 interface BookingData {
   checkInDate: string;
@@ -134,11 +136,9 @@ export default function BookingPage() {
     router.push("/confirm");
   };
 
-  // วันที่วันนี้
   const todayObj = new Date();
   const minDate = todayObj.toISOString().split("T")[0];
 
-  // วันที่ 3 เดือนถัดไป
   const maxDateObj = new Date(todayObj);
   maxDateObj.setMonth(maxDateObj.getMonth() + 3);
   const maxDate = maxDateObj.toISOString().split("T")[0];
@@ -328,11 +328,14 @@ export default function BookingPage() {
               onChange={handleFileChange}
             />
             {slipPreview && (
-              <img
-                src={slipPreview}
-                alt="Preview Slip"
-                className="block mx-auto mt-2 w-6/5 object-contain"
-              />
+              <div className="relative w-full h-64 mt-2">
+                <Image
+                  src={slipPreview}
+                  alt="Preview Slip"
+                  fill
+                  className="object-contain"
+                />
+              </div>
             )}
           </div>
         )}
