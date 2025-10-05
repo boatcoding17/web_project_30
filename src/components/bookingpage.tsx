@@ -126,12 +126,14 @@ export default function BookingPage() {
     const bookingInfo = {
       roomName: selectedRoom.name,
       fullName: data.fullName,
+      phone: data.phone,
       checkInDate: data.checkInDate,
       checkInTime: data.checkInTime,
       checkOut: data.checkOut,
       nights: data.nights,
       adults,
       children,
+      childAges,
     };
 
     localStorage.setItem("booking", JSON.stringify(bookingInfo));
@@ -148,7 +150,7 @@ export default function BookingPage() {
   return (
     <section className="px-6 py-20 min-h-screen bg-[#2b221b] flex justify-center">
       <div className="w-full max-w-2xl rounded-2xl shadow-2xl bg-white/20 backdrop-blur-md border border-white/30 overflow-hidden transition-transform hover:-translate-y-1 hover:shadow-3xl duration-300">
-
+        
         {/* Gradient Title Bar */}
         <div className="bg-gradient-to-r from-[#d4af37] to-[#b08a31] text-center py-6">
           <h2 className="text-4xl font-serif font-bold text-white">24-Hour Stay Booking</h2>
@@ -156,7 +158,7 @@ export default function BookingPage() {
 
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-8 space-y-6 text-white">
-
+          
           {/* เลือกห้อง */}
           <div>
             <label className="block font-semibold mb-2">เลือกห้อง</label>
@@ -254,6 +256,37 @@ export default function BookingPage() {
                 className="w-full p-3 border rounded-lg bg-white/70 text-black focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
               />
               <p className="text-sm text-gray-200">สูงสุด {selectedRoom.maxChildren} คน</p>
+
+              {/* เลือกอายุเด็ก */}
+              {children > 0 && (
+                <div className="mt-3 space-y-2">
+                  {Array.from({ length: children }).map((_, idx) => (
+                    <div key={idx}>
+                      <label className="block font-semibold mb-1">อายุเด็กคนที่ {idx + 1}</label>
+                      <select
+                        value={childAges[idx] || 0}
+                        onChange={(e) => handleChildAgeChange(idx, parseInt(e.target.value))}
+                        className="w-full p-2 rounded-lg text-black bg-white/70 focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
+                      >
+                        <option value={0}>1 เดือน</option>
+                        <option value={1}>2 เดือน</option>
+                        <option value={2}>3 เดือน</option>
+                        <option value={3}>4 เดือน</option>
+                        <option value={4}>5 เดือน</option>
+                        <option value={5}>6 เดือน</option>
+                        <option value={6}>7 เดือน</option>
+                        <option value={7}>8 เดือน</option>
+                        <option value={8}>9 เดือน</option>
+                        <option value={9}>10 เดือน</option>
+                        <option value={10}>11 เดือน</option>
+                        {Array.from({ length: 17 }).map((_, i) => (
+                          <option key={i + 11} value={i + 1}>{i + 1} ปี</option>
+                        ))}
+                      </select>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
@@ -268,6 +301,7 @@ export default function BookingPage() {
               className="w-full p-3 border rounded-lg bg-white/70 text-black focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
             />
           </div>
+
           <div>
             <label className="block font-semibold mb-2">อีเมล</label>
             <input
@@ -278,15 +312,24 @@ export default function BookingPage() {
               className="w-full p-3 border rounded-lg bg-white/70 text-black focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
             />
           </div>
+
           <div>
             <label className="block font-semibold mb-2">เบอร์โทรศัพท์</label>
             <input
               type="tel"
               value={data.phone}
-              onChange={(e) => setData(prev => ({ ...prev, phone: e.target.value }))}
+              onChange={(e) => {
+                const onlyNums = e.target.value.replace(/\D/g, "");
+                if (onlyNums.length <= 10) setData(prev => ({ ...prev, phone: onlyNums }));
+              }}
               required
+              pattern="[0-9]{10}"
+              maxLength={10}
+              inputMode="numeric"
+              placeholder="เช่น 0812345678"
               className="w-full p-3 border rounded-lg bg-white/70 text-black focus:outline-none focus:ring-2 focus:ring-[#d4af37]"
             />
+            <p className="text-sm text-gray-200 mt-1">ต้องเป็นตัวเลข 10 หลัก</p>
           </div>
 
           {/* ค่ามัดจำ */}
@@ -342,6 +385,7 @@ export default function BookingPage() {
           >
             ยืนยันการจอง
           </button>
+
         </form>
       </div>
     </section>
