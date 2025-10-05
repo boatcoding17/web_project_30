@@ -1,13 +1,13 @@
 @import "tailwindcss";
 
-/* 🎨 Balanced Warm Neutral Theme */
+/* 🌰 Mocha Cream Luxe - Black Text Edition */
 :root {
-  --background: #f8f6f2;       /* ครีมอมเทา สว่างกว่าเดิมเล็กน้อย */
-  --foreground: #5a544c;       /* Taupe กลางๆ ไม่เข้มไม่อ่อน */
-  --accent: #bfa27a;           /* Beige + Gold เบาๆ */
-  --accent-light: #d8c4a3;     /* สี hover ที่ชัดขึ้นนิดเดียว */
-  --card-bg: #ffffffee;        /* ขาวโปร่งดูแพง */
-  --radius: 0.8rem;
+  --background: #3b322a;        /* น้ำตาลเข้ม matte */
+  --foreground: #2d2a27;        /* ดำเทาอบอุ่น (ใช้กับ text ใน card) */
+  --accent: #d4b378;            /* ทองอ่อนหรูหรา */
+  --accent-light: #e9ca8d;      /* ทองพาสเทล (hover) */
+  --card-bg: #fffffffa;         /* ขาวโปร่งใส เหมาะกับฟอร์ม */
+  --radius: 1rem;
 }
 
 @theme inline {
@@ -21,11 +21,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #2e2b27;     /* น้ำตาลเทาเข้มแบบ matte */
-    --foreground: #e9e3d9;     /* ครีมอ่อนอ่านง่าย */
-    --accent: #b79368;         /* Beige Gold แต่ลด saturation */
-    --accent-light: #cfb38b;   /* Hover */
-    --card-bg: #3a3530ee;
+    --background: #2e2721;      /* Mocha matte */
+    --foreground: #f4ede5;      /* ครีมอ่อนอ่านง่าย */
+    --accent: #caa76d;          /* ทอง muted */
+    --accent-light: #e0c48a;    /* Hover */
+    --card-bg: #3d352dee;
   }
 }
 
@@ -34,29 +34,35 @@
   transition: background-color 0.6s ease, color 0.6s ease, border-color 0.6s ease, transform 0.5s ease;
 }
 
-/* 🔘 Soft Button */
-.btn {
-  @apply px-4 py-2 rounded-md font-medium text-white 
-         bg-[var(--accent)] shadow 
-         hover:bg-[var(--accent-light)] hover:shadow-xl 
-         active:scale-95 transition-all duration-500;
+/* 🪄 Page Background */
+body {
+  @apply bg-[var(--background)] text-[var(--foreground)] font-sans;
 }
 
-/* 🪟 Card */
+/* 🪟 Card / Form Container */
 .card {
-  @apply backdrop-blur-md bg-[var(--card-bg)] 
-         border border-black/5 dark:border-white/10 
-         rounded-[var(--radius-card)] p-5 shadow-sm 
-         hover:shadow-md hover:-translate-y-1
-         transition-all duration-600;
+  @apply backdrop-blur-md bg-[var(--card-bg)]
+         border border-black/10 dark:border-white/10 
+         rounded-[var(--radius-card)] p-8 shadow-md
+         hover:shadow-lg hover:-translate-y-1
+         transition-all duration-500 text-[var(--foreground)];
 }
 
-/* ✨ Fade-in */
+/* 🔘 Button - Elegant Gold */
+.btn {
+  @apply px-6 py-2.5 rounded-lg font-semibold text-white
+         bg-[var(--accent)] shadow-md
+         hover:bg-[var(--accent-light)] hover:shadow-xl
+         active:scale-95 transition-all duration-500
+         tracking-wide;
+}
+
+/* ✨ Fade-in Animation */
 .fade-in {
   animation: fadeIn 1s ease forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
